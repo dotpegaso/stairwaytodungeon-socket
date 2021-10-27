@@ -24,6 +24,10 @@ io.on("connection", (socket) => {
     console.log("diceroll", diceroll);
     socket.broadcast.emit("diceroll", diceroll);
   });
+
+  socket.on("characters", () => {
+    socket.broadcast.emit("characters");
+  });
 });
 
 setInterval(() => io.emit("time", new Date().toTimeString()), 1000);
