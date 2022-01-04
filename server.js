@@ -21,12 +21,15 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => console.log("Client disconnected"));
 
   socket.on("diceroll", (diceroll) => {
-    console.log("diceroll", diceroll);
     socket.broadcast.emit("diceroll", diceroll);
   });
 
   socket.on("characters", () => {
     socket.broadcast.emit("characters");
+  });
+
+  socket.on("dayPeriodChange", (dayPeriodChange) => {
+    socket.broadcast.emit("dayPeriodChange", dayPeriodChange);
   });
 });
 
