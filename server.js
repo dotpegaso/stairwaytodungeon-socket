@@ -31,6 +31,10 @@ io.on("connection", (socket) => {
   socket.on("dayPeriodChange", (dayPeriodChange) => {
     socket.broadcast.emit("dayPeriodChange", dayPeriodChange);
   });
+
+  socket.on("connectedCharacter", (characterId) => {
+    socket.broadcast.emit("connectedCharacter", characterId);
+  });
 });
 
 setInterval(() => io.emit("time", new Date().toTimeString()), 1000);
