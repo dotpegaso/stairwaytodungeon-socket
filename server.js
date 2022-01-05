@@ -24,8 +24,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("diceroll", diceroll);
   });
 
-  socket.on("characters", () => {
-    socket.broadcast.emit("characters");
+  socket.on("characters", (entry) => {
+    socket.broadcast.emit("characters", entry);
   });
 
   socket.on("dayPeriodChange", (dayPeriodChange) => {
@@ -34,6 +34,10 @@ io.on("connection", (socket) => {
 
   socket.on("connectedCharacter", (characterId) => {
     socket.broadcast.emit("connectedCharacter", characterId);
+  });
+
+  socket.on("drawing", (data) => {
+    socket.broadcast.emit("drawing", data);
   });
 });
 
