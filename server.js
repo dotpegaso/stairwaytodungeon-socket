@@ -40,8 +40,14 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("drawing", data);
   });
 
-  socket.on("imageUpload", (data) => {
-    socket.broadcast.emit("imageUpload", data);
+  socket.on("imageUpload", (image) => {
+    const splitted = image.split(";base64,");
+    const format = splitted[0].split("/")[1];
+    const final = fs.writeFileSync("./image." + format, splitted[1], {
+      encoding: "base64",
+    });
+
+    socket.broadcast.emit("imageUpload", final);
   });
 });
 
