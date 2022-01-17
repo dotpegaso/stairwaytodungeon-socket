@@ -39,6 +39,10 @@ io.on("connection", (socket) => {
   socket.on("drawing", (data) => {
     socket.broadcast.emit("drawing", data);
   });
+
+  socket.on("imageUpload", (data) => {
+    socket.broadcast.emit("imageUpload", data);
+  });
 });
 
 setInterval(() => io.emit("time", new Date().toTimeString()), 1000);
